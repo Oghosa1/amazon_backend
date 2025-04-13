@@ -13,6 +13,10 @@ mongoose.connect(process.env.DB_URL).then(() => {
     console.log('MongoDB Connected');
 }).catch(err => console.log(err));
 
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+
 app.listen(port, "0.0.0.0", () => {
     console.log(`Listening on port ${port}`);
 });
