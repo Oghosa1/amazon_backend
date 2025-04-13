@@ -6,7 +6,7 @@
 # CMD [ "npm", "start" ]
 
 # Use an official Node.js runtime as a base image
-FROM node:14-slim
+FROM node:18.19.1
 
 # Set the working directory inside the container
 WORKDIR /index
