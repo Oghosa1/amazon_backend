@@ -108,5 +108,9 @@ authRouter.get('/', auth, async (req, res) => {
     res.json({...user._doc, token: req.token});
 });
 
+authRouter.get('/hello', (req, res) => {
+    res.send("Hello World");
+})
+
 // Export the router for use in other files
 module.exports = authRouter;
