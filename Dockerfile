@@ -12,7 +12,7 @@ FROM node:18.19.1
 WORKDIR /index
 
 # Copy the package.json and package-lock.json files to the container
-COPY package*.json ./index
+COPY package*.json ./
 
 # Install the project dependencies
 RUN npm install
