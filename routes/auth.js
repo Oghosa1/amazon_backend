@@ -95,10 +95,6 @@ authRouter.post('/api/tokenIsValid', async (req, res) => {
 
 // Get User Data route - Protected route that requires authentication
 authRouter.get('/', auth, async (req, res) => {
-    // Find user by the authenticated user object
-    // const user = await User.findOne({_id: req.user}); Efficiency: User.findById is optimized
-    // for finding a document by its _id. MongoDB provides a direct method for this,
-    // which is faster and more efficient than using
     const user = await User.findById(req.user);
 
     // Return user data and token
