@@ -1,9 +1,9 @@
 // Import required modules
 const express = require('express');
-const User = require("../models/user");  // Import User model for database operations
+const User = require("../models/usermodels");  // Import User model for database operations
 const bcryptjs = require("bcryptjs");     // For password hashing
 const jwt = require("jsonwebtoken");      // For JWT token generation and verification
-const auth = require("../middlewares/authmiddleware");  // Import authentication middleware
+const authroutes = require("../middlewares/authmiddleware");  // Import authentication middleware
 
 // Create a new router instance
 const authRouter = express.Router();
@@ -74,7 +74,7 @@ authRouter.post('/api/login', async (req, res) => {
 authRouter.post('/api/tokenIsValid', async (req, res) => {
     try {
         // Get token from request header
-        const token = req.header('x-auth-token')
+        const token = req.header('x-authroutes-token')
         if (!token) return res.json(false);
         
         // Verify token using secret key
@@ -94,7 +94,7 @@ authRouter.post('/api/tokenIsValid', async (req, res) => {
 });
 
 // Get User Data route - Protected route that requires authentication
-authRouter.get('/', auth, async (req, res) => {
+authRouter.get('/', authroutes, async (req, res) => {
     const user = await User.findById(req.user);
 
     // Return user data and token
@@ -103,7 +103,7 @@ authRouter.get('/', auth, async (req, res) => {
 
 
 // Get user data
-authRouter.get('/', auth, async (req, res) => {
+authRouter.get('/', authroutes, async (req, res) => {
     const user = await User.findById(req.user);
     res.json({...user._doc, token: req.token});
 });
