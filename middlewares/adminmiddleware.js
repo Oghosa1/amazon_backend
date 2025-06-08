@@ -34,3 +34,5 @@ const admin = async (req, res, next) => {
         res.status(500).json({error: e.message});
     }
 }
+
+module.exports = admin; // Export the admin middleware function to be used in other modules
