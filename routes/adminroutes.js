@@ -1,10 +1,10 @@
 const express = require('express');
 const adminRouter = express.Router();
-const adminroutes = require('../middlewares/adminmiddleware');
+const adminMiddleware = require('../middlewares/adminmiddleware');
 const Productmodels = require("../models/productmodels"); // Import adminroutes middleware for authorization
 
 // Add product
-adminRouter.post('/admin/add-product', async (req, res) => {
+adminRouter.post('/admin/add-product', adminMiddleware, async (req, res) => {
     try {
         const {name, price, description, images, quantity, category} = req.body;
         let product = new Productmodels({
