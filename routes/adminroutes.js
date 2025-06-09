@@ -15,8 +15,7 @@ adminRouter.post('/admin/add-product', adminMiddleware, async (req, res) => {
             quantity,
             category});
         product = await product.save();
-        // res.json({product: product});
-        res.status(500).json({message: "Product added successfully", product: product});
+        res.status(201).json({message: "Product added successfully", product: product});
     } catch (e) {
         res.status(500).json({error: e.message});
     }

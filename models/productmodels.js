@@ -27,8 +27,9 @@ const productSchema = new Schema({
         required: true,
     },
     category: {
-        type: Schema.Types.ObjectId,
-        ref: 'Category'
+        type: String,
+        required: true,
+        trim: true
     },
     // Rating and reviews can be added later
 });
