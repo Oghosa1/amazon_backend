@@ -15,7 +15,8 @@ const admin = async (req, res, next) => {
         const isVerified = jwt.verify(token, 'passwordKey');
 
         const user = await User.findById(isVerified.id);
-        if (user.type !== 'admin' || user.type !== 'seller') {
+        // if (user.type !== 'admin' || user.type !== 'seller') {
+        if (user.type !== 'admin' && user.type !== 'seller') {
             return res.status(401).json({msg: 'You are not authorized to access this resource'});
         }
 
