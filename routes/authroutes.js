@@ -33,8 +33,8 @@ authRouter.post('/api/signup', async (req, res) => {
         // Save user to database
         user = await user.save();
         
-        // Return the created user object
-        res.json({user: user});
+        // Return the created user object with a success message
+        res.json({msg: "Signup successful", user: user});//remove this msg
     } catch (error) {
         // Handle any errors during signup process
         res.status(500).json({error: error.message});
@@ -62,8 +62,8 @@ authRouter.post('/api/login', async (req, res) => {
         // Generate JWT token with user ID and 12-hour expiration
         const token = jwt.sign({id: user._id}, "passwordKey", {expiresIn: "12h"});
 
-        // Return token and user data
-        res.json({token: token, ...user._doc});
+        // Return token and user data with a success message
+        res.json({msg: "Login successful", token: token, ...user._doc});//remove this msg
     } catch (e) {
         // Handle any errors during login process
         res.status(500).json({error: e});
