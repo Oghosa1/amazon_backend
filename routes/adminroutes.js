@@ -21,4 +21,16 @@ adminRouter.post('/admin/add-product', adminMiddleware, async (req, res) => {
     }
 });
 
+// Get all products
+adminRouter.get('/admin/get-products', adminMiddleware, async (req, res) => {
+    try {
+        const products = await Productmodels.find({});
+        // res.status(200).json(products);
+        res.status(200).json({msg: "Product loading..."})
+        res.json({products});
+    } catch (e) {
+        res.status(500).json({error: e.message});
+    }
+});
+
 module.exports = adminRouter;
