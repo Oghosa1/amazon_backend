@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken'); // Import the jsonwebtoken library for JWT functionality
 
 // Define the authentication middleware function
-const auth = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     try {
         // Extract the token from the 'x-auth-token' header
         const token = req.header('x-auth-token');
@@ -30,5 +30,5 @@ const auth = async (req, res, next) => {
     }
 }
 
-// Export the auth middleware function to be used in other modules
-module.exports = auth;
+// Export the authMiddleware middleware function to be used in other modules
+module.exports = authMiddleware;

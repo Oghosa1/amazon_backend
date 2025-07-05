@@ -25,9 +25,19 @@ adminRouter.post('/admin/add-product', adminMiddleware, async (req, res) => {
 adminRouter.get('/admin/get-products', adminMiddleware, async (req, res) => {
     try {
         const products = await Productmodels.find({});
-        // res.status(200).json(products);
-        res.status(200).json({msg: "Product loading..."})
-        res.json({products});
+        res.status(200).json(products);
+    } catch (e) {
+        res.status(500).json({error: e.message});
+    }
+});
+
+// Delete product
+adminRouter.post('/admin/delete-product', adminMiddleware, async (req, res) => {
+    try {
+        const {id} = req.body;
+        let product = await Productmodels.findByIdAndDelete(id);
+        // res.status(200).json({message: "Product deleted successfully...", product: product});
+        res.status(200).json({message: "Product deleted successfully..."});
     } catch (e) {
         res.status(500).json({error: e.message});
     }
