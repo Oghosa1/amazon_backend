@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken'); // Import the jsonwebtoken library for JWT functionality
-const User = require('../models/usermodels'); // Import the User model for database operations
+const { Usermodels } = require('../models/usermodels'); // Import the User model for database operations
 
 const admin = async (req, res, next) => {
     try {
@@ -14,7 +14,7 @@ const admin = async (req, res, next) => {
         // Verify the token using the 'passwordKey' secret
         const isVerified = jwt.verify(token, 'passwordKey');
 
-        const user = await User.findById(isVerified.id);
+        const user = await Usermodels.findById(isVerified.id);
         // if (user.type !== 'admin' || user.type !== 'seller') {
         if (user.type !== 'admin' && user.type !== 'seller') {
             return res.status(401).json({msg: 'You are not authorized to access this resource'});
